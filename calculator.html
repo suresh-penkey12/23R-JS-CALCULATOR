@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #parent {
+        border: 2px solid #ddd;
+        height: 70vh;
+        width: 30vw;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+      }
+      #disp {
+        border: 2px solid #ddd;
+        height: 100px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        padding-right: 10px;
+        font-size: 24px;
+        background-color: #f5f5f5;
+        color: #333;
+      }
+
+      
+      #number {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr); 
+        gap: 5px;
+        padding: 5px;
+        background-color: #fff;
+      }
+
+      
+      .num {
+        border: 2px solid #ddd;
+        height: 55px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        font-size: 18px;
+        background-color: #f0f0f0;
+        color: #333;
+        transition: background-color 0.3s ease, transform 0.2s ease-in-out; /* For hover effect */
+      }
+
+      .num:hover {
+        background-color: #e0e0e0; 
+        transform: scale(1.05);  
+      }
+
+      .num:active {
+        transform: scale(0.95); 
+      }
+    </style>
+  </head>
+  <body>
+    <div id="parent">
+      <div id="disp"></div>
+      <div id="number">
+        <div class="num" onclick="fun(event)">1</div>
+        <div class="num" onclick="fun(event)">2</div>
+        <div class="num" onclick="fun(event)">3</div>
+        <div class="num" onclick="fun(event)">4</div>
+        <div class="num" onclick="fun(event)">5</div>
+        <div class="num" onclick="fun(event)">6</div>
+        <div class="num" onclick="fun(event)">7</div>
+        <div class="num" onclick="fun(event)">8</div>
+        <div class="num" onclick="fun(event)">9</div>
+        <div class="num" onclick="fun(event)">0</div>
+        <div class="num" onclick="fun(event)">+</div>
+        <div class="num" onclick="fun(event)">-</div>
+        <div class="num" onclick="fun(event)">*</div>
+        <div class="num" onclick="fun(event)">%</div>
+        <div class="num" onclick="fun(event)">=</div>
+        <div class="num" onclick="fun(event)">.</div>
+        <div class="num" onclick="fun(event)">CE</div>
+        <div class="num" onclick="fun(event)">C</div>
+      </div>
+    </div>
+    <script>
+      let disp = document.getElementById("disp");
+      disp.innerHTML = "";
+      function fun(event) {
+        let value = event.target.innerHTML;
+        if (value === "=") {
+          try {
+            disp.innerHTML = eval(disp.innerHTML);
+          } catch (event) {
+            disp.innerHTML = "Error";
+          }
+        } else if (value === "C") {
+          disp.innerHTML = "";
+        } else if (value === "CE") {
+          disp.innerHTML = disp.innerHTML.slice(0, -1);
+        } else {
+          disp.innerHTML += value;
+        }
+      }
+    </script>
+  </body>
+</html>
